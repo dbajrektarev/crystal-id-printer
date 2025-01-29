@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crystal is Pretty</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff;
+        }
+        #button {
+            padding: 20px 40px;
+            font-size: 24px;
+            cursor: pointer;
+            background-color: #ff8c00;
+            border: none;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="button" onclick="startMessage()">Click me!</button>
+
+    <script>
+        function startMessage() {
+            let button = document.getElementById("button");
+            button.disabled = true; // Disable the button after click
+            let messageInterval = setInterval(function() {
+                alert("Crystal is pretty!");
+            }, 1000); // Every 1 second
+
+            // Stop the loop if user closes the alert
+            window.onbeforeunload = function() {
+                clearInterval(messageInterval);
+            };
+        }
+    </script>
+
+</body>
+</html>
