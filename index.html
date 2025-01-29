@@ -13,6 +13,8 @@
             height: 100vh;
             margin: 0;
             background-color: #f0f8ff;
+            flex-direction: column;
+            overflow: hidden;
         }
         #button {
             padding: 20px 40px;
@@ -21,6 +23,28 @@
             background-color: #ff8c00;
             border: none;
             border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .message {
+            position: absolute;
+            font-size: 30px;
+            font-weight: bold;
+            color: #ff4500;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-30px);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -32,14 +56,25 @@
         function startMessage() {
             let button = document.getElementById("button");
             button.disabled = true; // Disable the button after click
-            let messageInterval = setInterval(function() {
-                alert("Crystal is pretty!");
-            }, 1000); // Every 1 second
+            let counter = 0;
 
-            // Stop the loop if user closes the alert
-            window.onbeforeunload = function() {
-                clearInterval(messageInterval);
-            };
+            // Create new "Crystal is pretty!" messages continuously
+            let messageInterval = setInterval(function() {
+                counter++;
+
+                let newMessage = document.createElement('div');
+                newMessage.className = 'message';
+                newMessage.style.left = Math.random() * window.innerWidth + 'px'; // Random position
+                newMessage.style.top = Math.random() * window.innerHeight + 'px'; // Random position
+                newMessage.textContent = 'Crystal is pretty!';
+                document.body.appendChild(newMessage);
+
+                // Optional: Remove the message after some time to keep the page clean
+                setTimeout(function() {
+                    newMessage.remove();
+                }, 3000); // Remove message after 3 seconds
+
+            }, 500); // New message every 500 milliseconds
         }
     </script>
 
