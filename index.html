@@ -34,6 +34,25 @@
         #button:hover {
             background-color: #ff1493; /* Darker pink on hover */
         }
+        #yesButtons {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        .yesButton {
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #ff1493;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            margin: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .yesButton:hover {
+            background-color: #ff69b4; /* Lighter pink on hover */
+        }
         .message {
             position: absolute;
             font-size: 30px;
@@ -45,6 +64,7 @@
             font-size: 40px;
             color: #ff1493;
             animation: float 4s ease-in-out infinite;
+            position: absolute;
         }
         #kissEmoji {
             font-size: 50px;
@@ -71,21 +91,26 @@
 
     <button id="button" onclick="askForKiss()">Click me!</button>
 
+    <div id="yesButtons">
+        <button class="yesButton" onclick="showKissEmoji()">Yes</button>
+        <button class="yesButton" onclick="showKissEmoji()">Yes</button>
+    </div>
+
     <script>
         function askForKiss() {
             let button = document.getElementById("button");
             button.disabled = true; // Disable the button after click
 
-            // Prompt asking "Kiss Damir?"
-            let answer = confirm("Kiss Damir?");
-            if (answer) {
-                showKissEmoji();
-            } else {
-                alert("Maybe next time!");
-            }
+            // Show "Yes" buttons on the screen
+            let yesButtons = document.getElementById("yesButtons");
+            yesButtons.style.display = 'flex';
         }
 
         function showKissEmoji() {
+            // Hide the "Yes" buttons
+            let yesButtons = document.getElementById("yesButtons");
+            yesButtons.style.display = 'none';
+
             // Show the kiss emoji on the screen
             let kissEmoji = document.createElement('div');
             kissEmoji.id = 'kissEmoji';
@@ -117,7 +142,7 @@
                 newMessage.textContent = 'Crystal is pretty!';
                 document.body.appendChild(newMessage);
 
-                // Create hearts with animations
+                // Create hearts with animations that appear across the entire screen
                 let newHeart = document.createElement('div');
                 newHeart.className = 'heart';
                 newHeart.style.left = Math.random() * window.innerWidth + 'px'; // Random position
