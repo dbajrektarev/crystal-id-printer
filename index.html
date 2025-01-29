@@ -12,25 +12,44 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f8ff;
-            flex-direction: column;
+            background-image: url('https://source.unsplash.com/1600x900/?tropical,sunset');
+            background-size: cover;
+            background-position: center;
             overflow: hidden;
+            flex-direction: column;
+            color: white;
         }
         #button {
             padding: 20px 40px;
             font-size: 24px;
             cursor: pointer;
-            background-color: #ff8c00;
+            background-color: #ff69b4; /* Cute pink color */
             border: none;
             border-radius: 10px;
             margin-bottom: 20px;
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        #button:hover {
+            background-color: #ff1493; /* Darker pink on hover */
         }
         .message {
             position: absolute;
             font-size: 30px;
             font-weight: bold;
-            color: #ff4500;
-            animation: float 3s ease-in-out infinite;
+            color: #ff1493; /* Pink color for the messages */
+            animation: float 4s ease-in-out infinite;
+        }
+        .heart {
+            font-size: 40px;
+            color: #ff1493;
+            animation: float 4s ease-in-out infinite;
+        }
+        #kissEmoji {
+            font-size: 50px;
+            cursor: pointer;
+            animation: float 4s ease-in-out infinite;
         }
         @keyframes float {
             0% {
@@ -50,18 +69,47 @@
 </head>
 <body>
 
-    <button id="button" onclick="startMessage()">Click me!</button>
+    <button id="button" onclick="askForKiss()">Click me!</button>
 
     <script>
-        function startMessage() {
+        function askForKiss() {
             let button = document.getElementById("button");
             button.disabled = true; // Disable the button after click
+
+            // Prompt asking "Kiss Damir?"
+            let answer = confirm("Kiss Damir?");
+            if (answer) {
+                showKissEmoji();
+            } else {
+                alert("Maybe next time!");
+            }
+        }
+
+        function showKissEmoji() {
+            // Show the kiss emoji on the screen
+            let kissEmoji = document.createElement('div');
+            kissEmoji.id = 'kissEmoji';
+            kissEmoji.textContent = '💋'; // Kiss emoji
+            kissEmoji.style.position = 'absolute';
+            kissEmoji.style.left = Math.random() * window.innerWidth + 'px'; // Random position
+            kissEmoji.style.top = Math.random() * window.innerHeight + 'px'; // Random position
+            document.body.appendChild(kissEmoji);
+
+            // Make the kiss emoji clickable
+            kissEmoji.onclick = function() {
+                startAnimations();
+                kissEmoji.remove(); // Remove the kiss emoji after clicked
+            };
+        }
+
+        function startAnimations() {
             let counter = 0;
 
-            // Create new "Crystal is pretty!" messages continuously
+            // Create new "Crystal is pretty!" messages and hearts continuously
             let messageInterval = setInterval(function() {
                 counter++;
 
+                // Create "Crystal is pretty!" messages
                 let newMessage = document.createElement('div');
                 newMessage.className = 'message';
                 newMessage.style.left = Math.random() * window.innerWidth + 'px'; // Random position
@@ -69,10 +117,19 @@
                 newMessage.textContent = 'Crystal is pretty!';
                 document.body.appendChild(newMessage);
 
-                // Optional: Remove the message after some time to keep the page clean
+                // Create hearts with animations
+                let newHeart = document.createElement('div');
+                newHeart.className = 'heart';
+                newHeart.style.left = Math.random() * window.innerWidth + 'px'; // Random position
+                newHeart.style.top = Math.random() * window.innerHeight + 'px'; // Random position
+                newHeart.textContent = '❤️';
+                document.body.appendChild(newHeart);
+
+                // Remove messages and hearts after 3 seconds to keep things clean
                 setTimeout(function() {
                     newMessage.remove();
-                }, 3000); // Remove message after 3 seconds
+                    newHeart.remove();
+                }, 3000); // Remove after 3 seconds
 
             }, 500); // New message every 500 milliseconds
         }
