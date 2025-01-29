@@ -79,6 +79,7 @@
             font-size: 30px;
             color: #D8A7FF; /* Purple color */
             text-align: center;
+            display: none;  /* Initially hidden */
             margin-top: -60px; /* Place above the emoji */
         }
         .message {
@@ -125,9 +126,11 @@
 
     <script>
         function askForKiss() {
-            // Hide the first button
+            // Hide the first "Click me!" button and the arrow
             let button = document.getElementById("button");
+            let arrow = document.getElementById("arrow");
             button.style.display = 'none';
+            arrow.style.display = 'none';
 
             // Show "Kiss Damir?" question and "Yes" buttons
             let yesButtons = document.getElementById("yesButtons");
@@ -139,7 +142,7 @@
             let yesButtons = document.getElementById("yesButtons");
             yesButtons.style.display = 'none';
 
-            // Show the arrow pointing to the kiss emoji (near center)
+            // Show the kiss emoji and text
             let arrow = document.getElementById("arrow");
             arrow.style.display = 'block';  // Show the arrow pointing to the emoji
             arrow.style.left = '50%'; // Align arrow horizontally with the emoji
@@ -148,8 +151,6 @@
             // Show the "Click to kiss him" text above the emoji
             let clickToKiss = document.getElementById("clickToKiss");
             clickToKiss.style.display = 'block';  // Display the "Click to kiss him" text
-            clickToKiss.style.left = '50%';  // Center the text
-            clickToKiss.style.transform = 'translateX(-50%)';
 
             // Show the kiss emoji on the screen near the center
             let kissEmoji = document.createElement('div');
