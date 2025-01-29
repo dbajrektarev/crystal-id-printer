@@ -65,6 +65,7 @@
             position: absolute;
             display: none;
             text-align: center;
+            margin-top: -50px; /* Adjusts position of the arrow above the emoji */
         }
         #kissEmoji {
             font-size: 50px;
@@ -133,6 +134,8 @@
             // Show the arrow pointing to the kiss emoji (near center)
             let arrow = document.getElementById("arrow");
             arrow.style.display = 'block';  // Show the arrow pointing to the emoji
+            arrow.style.left = '50%'; // Align arrow horizontally with the emoji
+            arrow.style.transform = 'translateX(-50%)'; // Center the arrow
 
             // Show the kiss emoji on the screen near the center
             let kissEmoji = document.createElement('div');
