@@ -121,16 +121,14 @@
         <button class="yesButton" onclick="showKissEmoji()">Yes</button>
     </div>
 
-    
+    <div id="arrow">↓ Click me!</div>
     <div id="clickToKiss">Click to kiss him</div>
 
     <script>
         function askForKiss() {
-            // Hide the "Click me!" button and the arrow
+            // Hide the "Click me!" button
             let button = document.getElementById("button");
-            let arrow = document.getElementById("arrow");
             button.style.display = 'none';
-            arrow.style.display = 'none';
 
             // Show "Kiss Damir?" question and "Yes" buttons
             let yesButtons = document.getElementById("yesButtons");
@@ -142,13 +140,7 @@
             let yesButtons = document.getElementById("yesButtons");
             yesButtons.style.display = 'none';
 
-            // Show the kiss emoji and text
-            let arrow = document.getElementById("arrow");
-            arrow.style.display = 'block';  // Show the arrow pointing to the emoji
-            arrow.style.left = '50%'; // Align arrow horizontally with the emoji
-            arrow.style.transform = 'translateX(-50%)'; // Center the arrow
-
-            // Show the "Click to kiss him" text above the emoji
+            // Show the "Click to kiss him" text in purple and the kiss emoji
             let clickToKiss = document.getElementById("clickToKiss");
             clickToKiss.style.display = 'block';  // Display the "Click to kiss him" text
 
@@ -166,7 +158,6 @@
             kissEmoji.onclick = function() {
                 startAnimations();
                 kissEmoji.remove(); // Remove the kiss emoji after clicked
-                arrow.style.display = 'none'; // Remove the arrow after clicking the emoji
                 clickToKiss.style.display = 'none'; // Remove "Click to kiss him" text after clicking
             };
         }
