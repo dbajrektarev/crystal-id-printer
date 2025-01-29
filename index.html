@@ -38,6 +38,7 @@
             display: none;
             flex-direction: column;
             align-items: center;
+            text-align: center;
         }
         .yesButton {
             padding: 15px 30px;
@@ -52,6 +53,19 @@
         }
         .yesButton:hover {
             background-color: #ff69b4; /* Lighter pink on hover */
+        }
+        #questionText {
+            font-size: 24px;
+            color: #D8A7FF; /* Light purple */
+            margin-bottom: 20px;
+        }
+        #arrow {
+            font-size: 40px;
+            color: white;
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translateX(-50%);
         }
         .message {
             position: absolute;
@@ -70,6 +84,10 @@
             font-size: 50px;
             cursor: pointer;
             animation: float 4s ease-in-out infinite;
+            position: absolute;
+            left: 50%;
+            top: 40%;
+            transform: translateX(-50%);
         }
         @keyframes float {
             0% {
@@ -92,24 +110,31 @@
     <button id="button" onclick="askForKiss()">Click me!</button>
 
     <div id="yesButtons">
+        <div id="questionText">Kiss Damir?</div>
         <button class="yesButton" onclick="showKissEmoji()">Yes</button>
         <button class="yesButton" onclick="showKissEmoji()">Yes</button>
     </div>
+
+    <div id="arrow">↓</div>
 
     <script>
         function askForKiss() {
             let button = document.getElementById("button");
             button.disabled = true; // Disable the button after click
 
-            // Show "Yes" buttons on the screen
+            // Show "Kiss Damir?" question and "Yes" buttons
             let yesButtons = document.getElementById("yesButtons");
             yesButtons.style.display = 'flex';
         }
 
         function showKissEmoji() {
-            // Hide the "Yes" buttons
+            // Hide the "Yes" buttons and question
             let yesButtons = document.getElementById("yesButtons");
             yesButtons.style.display = 'none';
+
+            // Hide the arrow
+            let arrow = document.getElementById("arrow");
+            arrow.style.display = 'none';
 
             // Show the kiss emoji on the screen
             let kissEmoji = document.createElement('div');
