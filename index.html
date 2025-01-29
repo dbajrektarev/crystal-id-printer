@@ -165,16 +165,16 @@
         function startAnimations() {
             let counter = 0;
 
-            // Create new "Crystal is pretty!" messages and hearts continuously
+            // Create new "Crystal is so pretty!" messages and hearts continuously
             let messageInterval = setInterval(function() {
                 counter++;
 
-                // Create "Crystal is pretty!" messages
+                // Create "Crystal is so pretty!" messages
                 let newMessage = document.createElement('div');
                 newMessage.className = 'message';
                 newMessage.style.left = Math.random() * window.innerWidth + 'px'; // Random position
                 newMessage.style.top = Math.random() * window.innerHeight + 'px'; // Random position
-                newMessage.textContent = 'Crystal is pretty!';
+                newMessage.textContent = 'Crystal is so pretty!'; // Updated text
                 document.body.appendChild(newMessage);
 
                 // Create hearts with animations that appear across the entire screen
