@@ -75,6 +75,12 @@
             top: 40%; /* Placed near the center */
             transform: translateX(-50%);
         }
+        #clickToKiss {
+            font-size: 30px;
+            color: #D8A7FF; /* Purple color */
+            text-align: center;
+            margin-top: -60px; /* Place above the emoji */
+        }
         .message {
             position: absolute;
             font-size: 30px;
@@ -115,11 +121,13 @@
     </div>
 
     <div id="arrow">↓ Click me!</div>
+    <div id="clickToKiss">Click to kiss him</div>
 
     <script>
         function askForKiss() {
+            // Hide the first button
             let button = document.getElementById("button");
-            button.disabled = true; // Disable the button after click
+            button.style.display = 'none';
 
             // Show "Kiss Damir?" question and "Yes" buttons
             let yesButtons = document.getElementById("yesButtons");
@@ -137,6 +145,12 @@
             arrow.style.left = '50%'; // Align arrow horizontally with the emoji
             arrow.style.transform = 'translateX(-50%)'; // Center the arrow
 
+            // Show the "Click to kiss him" text above the emoji
+            let clickToKiss = document.getElementById("clickToKiss");
+            clickToKiss.style.display = 'block';  // Display the "Click to kiss him" text
+            clickToKiss.style.left = '50%';  // Center the text
+            clickToKiss.style.transform = 'translateX(-50%)';
+
             // Show the kiss emoji on the screen near the center
             let kissEmoji = document.createElement('div');
             kissEmoji.id = 'kissEmoji';
@@ -152,6 +166,7 @@
                 startAnimations();
                 kissEmoji.remove(); // Remove the kiss emoji after clicked
                 arrow.style.display = 'none'; // Remove the arrow after clicking the emoji
+                clickToKiss.style.display = 'none'; // Remove "Click to kiss him" text after clicking
             };
         }
 
